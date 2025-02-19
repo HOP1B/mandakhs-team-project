@@ -13,30 +13,6 @@ export default function UpgradeModal({ skin, onClose }: UpgradeModalProps) {
   const [selectedUpgrade, setSelectedUpgrade] = useState<Skin | null>(null)
   const upgradeCandidates = skins.filter((s) => s.value > skin.value && s.value <= skin.value * 2)
 
-//   const handleUpgrade = () => {
-//     if (selectedUpgrade) {
-//       const upgradeCost = selectedUpgrade.value - skin.value
-//       if (balance >= upgradeCost) {
-//         const successChance = (skin.value / selectedUpgrade.value) * 100
-//         if (Math.random() * 100 < successChance) {
-//           onUpgrade({ ...selectedUpgrade, wear: getWearFromFloat(1 - skin.float), float: skin.float })
-//         } else {
-//           onUpgrade(null)
-//           alert("Upgrade failed! You lost your skin.")
-//         }
-//       } else {
-//         alert("Not enough balance for this upgrade!")
-//       }
-//     }
-//   }
-
-//   const getWearFromFloat = (float: number) => {
-//     if (float < 0.07) return "Factory New"
-//     if (float < 0.15) return "Minimal Wear"
-//     if (float < 0.38) return "Field-Tested"
-//     if (float < 0.45) return "Well-Worn"
-//     return "Battle-Scarred"
-//   }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">

@@ -67,10 +67,6 @@ export default function Home() {
     return "Battle-Scarred"
   }
 
-  // const getRandomWear = () => {
-  //   const wears = ["Factory New", "Minimal Wear", "Field-Tested", "Well-Worn", "Battle-Scarred"]
-  //   return wears[Math.floor(Math.random() * wears.length)]
-  // }
 
   const openCase = () => {
     if (balance < selectedCase.price) {
@@ -168,10 +164,7 @@ export default function Home() {
               className="rounded-lg mb-4"
             />
             <p className="text-xl font-bold">{result.name}</p>
-            <p className={`text-lg ${result.rarity}`}>{result.rarity}</p>
-            {/* <p className="text-md">
-              {result.wear} (Float: {(1 - result.float).toFixed(4)})
-            </p> */}
+            <p className={`text-lg ${result.rarity}`}>{result.rarity}</p>``
             <p className="text-md">Value: ${result.value.toFixed(2)}</p>
           </div>
         </div>

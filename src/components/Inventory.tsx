@@ -23,9 +23,6 @@ export default function Inventory({ inventory, onSellSkin, onUpgradeSkin }: Inve
             />
             <p className="text-sm font-bold truncate">{skin.name}</p>
             <p className={`text-xs ${skin.rarity}`}>{skin.rarity}</p>
-            {/* <p className="text-xs">
-              {skin.wear} (Float: {(1 - skin.float).toFixed(4)})
-            </p> */}
             <p className="text-xs">Value: ${skin.value.toFixed(2)}</p>
             <div className="mt-2 flex justify-between">
               <button
