@@ -1,8 +1,8 @@
 export const header = () => {
     return (
-        <header>
-            <div>
-                hii
+        <header className="">
+            <div className="">
+                
             </div>
         </header>
     )

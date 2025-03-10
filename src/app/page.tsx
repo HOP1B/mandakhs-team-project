@@ -14,7 +14,7 @@ export default function Home() {
   const [isOpening, setIsOpening] = useState(false)
   const [result, setResult] = useState<Skin | null>(null)
   const [inventory, setInventory] = useState<Skin[]>([])
-  const [balance, setBalance] = useState(50)
+  const [balance, setBalance] = useState(1000)
   const [spinnerItems, setSpinnerItems] = useState<Skin[]>([])
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false)
   const [selectedSkin, setSelectedSkin] = useState<Skin | null>(null)
@@ -41,7 +41,7 @@ export default function Home() {
       }
       setSpinnerItems(items)
     }
-  }, [isOpening])
+  }, [isOpening]);
 
   const getRandomSkin = () => {
     const rand = Math.random() * 100
@@ -182,4 +182,3 @@ export default function Home() {
     </main>
   )
 }
-
