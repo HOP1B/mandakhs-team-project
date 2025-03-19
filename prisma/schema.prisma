@@ -12,3 +12,27 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model skins {
+  id     String @id @default(nanoid())
+  name   String
+  status String
+  img    String
+}
+
+model Cases {
+  id   String @id @default(nanoid())
+  name String
+  img  String
+}
+
+model User {
+  id String @id
+
+}
+
+model Inventory {
+  id String @id @default(nanoid())
+
+  
+}
