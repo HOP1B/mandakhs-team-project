@@ -1,14 +1,5 @@
 import type React from "react"
 import "./globals.css"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-
-const inter = Inter({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "CS:GO Case ",
-  description: "Open virtual CS:GO cases and get skins!",
-}
 
 export default function RootLayout({
   children,
@@ -17,8 +8,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <Navbar />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
 
+
+
+import './globals.css'
+import { ThemeProvider } from "@/components/ThemeProvider"
+import { Navbar } from "./components/layout/Navbar"
+
+
+export const metadata = {
+      generator: 'v0.dev'
+    };
