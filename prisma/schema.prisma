@@ -19,8 +19,20 @@ model skins {
   status String
   img    String
 }
+
 model Cases {
+  id   String @id @default(nanoid())
+  name String
+  img  String
+}
+
+model User {
+  id String @id
+
+}
+
+model Inventory {
   id String @id @default(nanoid())
-  name   String
-  img    String
+
+  
 }
