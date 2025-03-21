@@ -96,7 +96,6 @@ const newDrops = [
     caseName: "Azure Aura",
   },
 ];
-
 type LiveDropsType = {
   id: string;
   time: string;
