@@ -9,7 +9,6 @@ import {
   User,
   Settings,
   History,
-  Trophy,
   Users,
   Edit,
   LogOut,
@@ -319,16 +318,13 @@ export default function ProfilePage() {
                       <User className="mr-2 h-4 w-4" />
                       Overview
                     </Button>
-                    <Button
-                      variant="ghost"
-                      className={`w-full justify-start ${
-                        activeTab === "stats" ? "bg-gray-700/50" : ""
-                      }`}
-                      onClick={() => setActiveTab("stats")}
-                    >
-                      <Trophy className="mr-2 h-4 w-4" />
-                      Stats & Achievements
+
+
+                    <Button>
+                      <Link href={"/StatsAchievements"}>Stats & Achievements</Link>
                     </Button>
+
+
                     <Button
                       variant="ghost"
                       className={`w-full justify-start ${
@@ -339,6 +335,8 @@ export default function ProfilePage() {
                       <History className="mr-2 h-4 w-4" />
                       Transaction History
                     </Button>
+
+
                     <Button
                       variant="ghost"
                       className={`w-full justify-start ${
@@ -349,6 +347,8 @@ export default function ProfilePage() {
                       <Users className="mr-2 h-4 w-4" />
                       Friends
                     </Button>
+
+
                     <Button
                       variant="ghost"
                       className={`w-full justify-start ${
@@ -359,6 +359,8 @@ export default function ProfilePage() {
                       <Settings className="mr-2 h-4 w-4" />
                       Settings
                     </Button>
+
+
                     <Separator className="my-2 bg-gray-700" />
                     <Button
                       variant="ghost"
@@ -561,157 +563,7 @@ export default function ProfilePage() {
               </motion.div>
             )}
 
-            {/* Stats & Achievements Tab */}
-            {activeTab === "stats" && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Card className="bg-gray-800/60 backdrop-blur-sm border-gray-700 mb-6">
-                  <CardHeader>
-                    <CardTitle>Your Stats</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                      <div className="bg-gray-700/50 rounded-lg p-4">
-                        <div className="flex items-center mb-2">
-                          <Gift className="h-5 w-5 text-cyan-400 mr-2" />
-                          <div className="text-lg font-medium">
-                            Cases Opened
-                          </div>
-                        </div>
-                        <div className="text-3xl font-bold">
-                          {userData.totalCasesOpened}
-                        </div>
-                      </div>
-                      <div className="bg-gray-700/50 rounded-lg p-4">
-                        <div className="flex items-center mb-2">
-                          <Zap className="h-5 w-5 text-purple-400 mr-2" />
-                          <div className="text-lg font-medium">Spins</div>
-                        </div>
-                        <div className="text-3xl font-bold">
-                          {userData.totalSpins}
-                        </div>
-                      </div>
-                      <div className="bg-gray-700/50 rounded-lg p-4">
-                        <div className="flex items-center mb-2">
-                          <ChevronRight className="h-5 w-5 text-pink-400 mr-2" />
-                          <div className="text-lg font-medium">Upgrades</div>
-                        </div>
-                        <div className="text-3xl font-bold">
-                          {userData.totalUpgrades}
-                        </div>
-                        <div className="text-sm text-gray-400 mt-1">
-                          {userData.successfulUpgrades} successful (
-                          {Math.round(
-                            (userData.successfulUpgrades /
-                              userData.totalUpgrades) *
-                              100
-                          )}
-                          %)
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-gray-700/30 rounded-lg p-4 mb-6">
-                      <h3 className="text-lg font-medium mb-4">
-                        Activity Over Time
-                      </h3>
-                      <div className="h-48 flex items-end justify-between space-x-2">
-                        {Array.from({ length: 30 }).map((_, i) => {
-                          const height = Math.floor(Math.random() * 100);
-                          return (
-                            <div
-                              key={i}
-                              className="flex-1 flex flex-col items-center"
-                            >
-                              <div
-                                className="w-full bg-gradient-to-t from-cyan-600 to-purple-600 rounded-t-sm"
-                                style={{ height: `${height}%` }}
-                              ></div>
-                              {i % 5 === 0 && (
-                                <div className="text-xs text-gray-500 mt-1">
-                                  {30 - i}d
-                                </div>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-gray-800/60 backdrop-blur-sm border-gray-700">
-                  <CardHeader>
-                    <CardTitle>Achievements</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {userData.achievements.map((achievement) => (
-                        <div
-                          key={achievement.id}
-                          className={`flex items-center p-4 rounded-lg ${
-                            achievement.completed
-                              ? "bg-gray-700/30"
-                              : "bg-gray-700/10 border border-gray-700"
-                          }`}
-                        >
-                          <div
-                            className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${
-                              achievement.completed
-                                ? "bg-green-500/20"
-                                : "bg-gray-600/20"
-                            }`}
-                          >
-                            <achievement.icon
-                              className={`h-6 w-6 ${
-                                achievement.completed
-                                  ? "text-green-400"
-                                  : "text-gray-400"
-                              }`}
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="font-medium">{achievement.name}</h4>
-                            <p className="text-sm text-gray-400">
-                              {achievement.description}
-                            </p>
-                            {!achievement.completed &&
-                              achievement.progress !== undefined && (
-                                <div className="mt-2">
-                                  <div className="flex justify-between items-center mb-1">
-                                    <span className="text-xs text-gray-400">
-                                      {achievement.progress}% complete
-                                    </span>
-                                  </div>
-                                  <Progress
-                                    value={achievement.progress}
-                                    className="h-1.5 bg-gray-700"
-                                  >
-                                    <div
-                                      className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full"
-                                      style={{
-                                        width: `${achievement.progress}%`,
-                                      }}
-                                    />
-                                  </Progress>
-                                </div>
-                              )}
-                          </div>
-                          {achievement.completed && (
-                            <Badge className="bg-green-500/20 text-green-400 ml-2">
-                              Completed
-                            </Badge>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )}
+            
 
             {/* Transaction History Tab */}
             {activeTab === "history" && (
