@@ -2,17 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Menu,
-  X,
-  Bell,
-  User,
-  Settings,
-  LogOut,
-  Gift,
-  Wallet,
-} from "lucide-react";
+
+import { Menu, X, Bell, Gift, Wallet } from "lucide-react";
 
 import { usePathname } from "next/navigation";
 import { Button } from "../../../components/ui/button";
@@ -25,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { UserButton } from "@clerk/nextjs";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -130,49 +121,7 @@ export function Navbar() {
                 <Wallet className="h-4 w-4" />
               </Button>
             </div>
-
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="relative h-10 w-10 rounded-full"
-                >
-                  <Avatar>
-                    <AvatarImage
-                      src="/placeholder.svg?height=40&width=40"
-                      alt="User"
-                    />
-                    <AvatarFallback className="bg-gradient-to-br from-purple-600 to-pink-600">
-                      JD
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="w-56 bg-gray-800 border-gray-700"
-              >
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator className="bg-gray-700" />
-                <DropdownMenuItem className="cursor-pointer">
-                  <User className="mr-2 h-4 w-4" />
-                  <Link href="/profile">Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  <Wallet className="mr-2 h-4 w-4" />
-                  <Link href="/profile?tab=history">Transactions</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer">
-                  <Settings className="mr-2 h-4 w-4" />
-                  <Link href="/profile?tab=settings">Settings</Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator className="bg-gray-700" />
-                <DropdownMenuItem className="cursor-pointer text-red-400 hover:text-red-300 hover:bg-red-950/30">
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <UserButton />
           </div>
 
           <Button
@@ -189,90 +138,6 @@ export function Navbar() {
           </Button>
         </div>
       </div>
-
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50"
-          >
-            <div className="container mx-auto py-4 px-4">
-              <nav className="flex flex-col space-y-4 mb-6">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`text-lg transition-colors ${
-                      pathname === item.href
-                        ? "text-white font-medium"
-                        : "text-gray-400 hover:text-white"
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </nav>
-
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                  <Avatar className="h-10 w-10 mr-3">
-                    <AvatarImage
-                      src="/placeholder.svg?height=40&width=40"
-                      alt="User"
-                    />
-                    <AvatarFallback className="bg-gradient-to-br from-purple-600 to-pink-600">
-                      JD
-                    </AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <div className="font-medium">JohnDoe</div>
-                    <div className="text-sm text-gray-400">Level 42</div>
-                  </div>
-                </div>
-                <div className="bg-gray-800 rounded-full px-3 py-1 flex items-center">
-                  <span className="text-yellow-400 font-medium">1,250</span>
-                  <span className="ml-1 text-sm">coins</span>
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    window.location.href = "/profile";
-                  }}
-                >
-                  <User className="mr-2 h-5 w-5" />
-                  Profile
-                </Button>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    window.location.href = "/profile?tab=settings";
-                  }}
-                >
-                  <Settings className="mr-2 h-5 w-5" />
-                  Settings
-                </Button>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start text-red-400 hover:text-red-300 hover:bg-red-950/30"
-                >
-                  <LogOut className="mr-2 h-5 w-5" />
-                  Log out
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 }
