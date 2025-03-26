@@ -4,7 +4,7 @@ export const Footer = () => {
   return (
     <footer className="bg-gray-900/80 backdrop-blur-sm py-6 mt-12 relative z-10 border-t border-gray-800">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="flex justify-between gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
               GunVault
@@ -13,13 +13,7 @@ export const Footer = () => {
               The premier destination for case openings and skin upgrades.
             </p>
           </div>
-          <div>
-            <h4 className="font-bold mb-3 text-gray-300">Quick Links</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li></li>
-            </ul>
-          </div>
-          <div>
+          <div className="flex flex-col pr-12">
             <h4 className="font-bold mb-3 text-gray-300">Support</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>

@@ -64,48 +64,33 @@ const initialDrops = [
   },
 ];
 
-const newDrops = [
-  {
-    id: 6,
-    username: "ShadowSniper",
-    item: "USP-S | Kill Confirmed",
-    image: "/placeholder.svg?height=60&width=60",
-    rarity: "epic",
-    color: "from-red-500 to-orange-600",
-    caseImage: "/placeholder.svg?height=40&width=40",
-    caseName: "Crimson Glory",
-  },
-  {
-    id: 7,
-    username: "FlashBang",
-    item: "Desert Eagle | Blaze",
-    image: "/placeholder.svg?height=60&width=60",
-    rarity: "epic",
-    color: "from-orange-500 to-red-600",
-    caseImage: "/placeholder.svg?height=40&width=40",
-    caseName: "Sunset Blaze",
-  },
-  {
-    id: 8,
-    username: "SmokeScreen",
-    item: "AWP | Gungnir",
-    image: "/placeholder.svg?height=60&width=60",
-    rarity: "legendary",
-    color: "from-blue-500 to-indigo-600",
-    caseImage: "/placeholder.svg?height=40&width=40",
-    caseName: "Azure Aura",
-  },
-];
+// const userData = [
+//   {
+//     id: nanoid(),
+//     username: "SniperKing",
+//     image: "/placeholder.svg?height=60&width=60",
+//   },
+//   {
+//     id: nanoid(),
+//     username: "SniperKing",
+//     image: "/placeholder.svg?height=60&width=60",
+//   },
+//   {
+//     id: nanoid(),
+//     username: "SniperKing",
+//     image: "/placeholder.svg?height=60&width=60",
+//   },
+// ];
+
+
 type LiveDropsType = {
   id: string;
-  time: string;
   username: string;
+  time: string;
   item: string;
-  image: string;
-  rarity: string;
-  color: string;
-  caseImage: string;
+  image : string;
   caseName: string;
+  caseImage : string;
 };
 
 export const LiveDrops = () => {
@@ -114,14 +99,14 @@ export const LiveDrops = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomDrop = newDrops[Math.floor(Math.random() * newDrops.length)];
+      const randomDrop = initialDrops[Math.floor(Math.random() * initialDrops.length)];
       const updatedDrop = {
         ...randomDrop,
         id: nanoid(),
         time: "Just now",
       };
 
-      setNewDrop(updatedDrop);
+      setNewDrop(null);
 
       setTimeout(() => {
         setNewDrop(null);
@@ -152,7 +137,7 @@ export const LiveDrops = () => {
   }, []);
 
   return (
-    <Card className="bg-gray-800/60 backdrop-blur-sm border-gray-700 p-4 overflow-hidden">
+    <Card className="bg-gray-800/60 backdrop-blur-sm border-gray-700 px-9 py-8 overflow-hidden">
       <div className="space-y-3">
         <AnimatePresence>
           {newDrop && (
@@ -172,9 +157,6 @@ export const LiveDrops = () => {
               >
                 <div className="flex-shrink-0 mr-3">
                   <div className="relative">
-                    <div
-                      className={`absolute inset-0 rounded-md bg-gradient-to-br ${newDrop.color} opacity-20`}
-                    ></div>
                     <Image
                       src={newDrop.image || "/placeholder.svg"}
                       alt={newDrop.item}
@@ -198,13 +180,6 @@ export const LiveDrops = () => {
                     unboxed
                   </p>
                   <p
-                    className={`text-xs truncate ${
-                      newDrop.rarity === "legendary"
-                        ? "text-yellow-400"
-                        : newDrop.rarity === "epic"
-                        ? "text-purple-400"
-                        : "text-blue-400"
-                    }`}
                   >
                     {newDrop.item}
                   </p>
@@ -221,16 +196,13 @@ export const LiveDrops = () => {
 
         {drops.map((drop) => (
           <div
-            key={drop.id}
+          key={null}
             className="flex items-center p-2 rounded-lg hover:bg-gray-700/30 transition-colors"
           >
             <div className="flex-shrink-0 mr-3">
               <div className="relative">
-                <div
-                  className={`absolute inset-0 rounded-md bg-gradient-to-br ${drop.color} opacity-20`}
-                ></div>
                 <Image
-                  src={drop.image || "/placeholder.svg"}
+                  src={"https://placehold.co/40x40"}
                   alt={drop.item}
                   width={40}
                   height={40}
@@ -238,7 +210,7 @@ export const LiveDrops = () => {
                 />
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center">
                   <Image
-                    src={drop.caseImage || "/placeholder.svg"}
+                    src={"https://placehold.co/16x16"}
                     alt={drop.caseName}
                     width={16}
                     height={16}
@@ -251,13 +223,6 @@ export const LiveDrops = () => {
                 <span className="text-cyan-400">{drop.username}</span> unboxed
               </p>
               <p
-                className={`text-xs truncate ${
-                  drop.rarity === "legendary"
-                    ? "text-yellow-400"
-                    : drop.rarity === "epic"
-                    ? "text-purple-400"
-                    : "text-blue-400"
-                }`}
               >
                 {drop.item}
               </p>

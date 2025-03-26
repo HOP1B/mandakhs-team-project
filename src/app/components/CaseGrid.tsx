@@ -55,7 +55,9 @@ export const CaseGrid = ({ id, name, img }: CaseGridType) => {
           ></div>
         </CardContent>
         <CardFooter className="flex flex-col items-start p-6 pt-2 relative z-10">
-          <h3 className="flex justify-center items-center font-bold text-lg">{name}</h3>
+          <h3 className="flex justify-center items-center font-bold text-lg">
+            {name}
+          </h3>
           <div className="flex justify-between w-full items-center mt-2">
             {/* <span className="text-yellow-400 font-medium">
                   {caseItem.price} $
@@ -66,8 +68,11 @@ export const CaseGrid = ({ id, name, img }: CaseGridType) => {
           </div>
           <Button
             className={`w-full mt-4 bg-gradient-to-r hover:opacity-90 transition-opacity border-[#ffffff] rounded-sm`}
-            asChild >
-            <Link href={`/cases/${id}`} className="bg-[#]">Open Case</Link>
+            asChild
+          >
+            <Link href={`/cases/${id}`} className="bg-[#]">
+              Open Case
+            </Link>
           </Button>
         </CardFooter>
       </Card>

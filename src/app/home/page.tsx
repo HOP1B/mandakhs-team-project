@@ -16,11 +16,6 @@ export default function Home() {
             <ul className="flex space-x-8">
               <li>
                 <a href="#" className="text-sm font-medium text-white/80 hover:text-white">
-                  TRADE
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm font-medium text-white/80 hover:text-white">
                   MARKET
                 </a>
               </li>

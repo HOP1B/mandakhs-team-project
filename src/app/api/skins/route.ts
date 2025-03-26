@@ -8,4 +8,3 @@ export const GET = async () => {
 
   return NextResponse.json(skins);
 };
-

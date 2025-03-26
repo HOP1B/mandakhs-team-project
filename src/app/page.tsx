@@ -1,8 +1,7 @@
 import { FeaturedSpinner } from "@/app/components/FeaturedSpinner";
 import { Footer } from "@/app/components/layout/Footer";
 import { LiveDrops } from "@/app/components/LiveDrops";
-import { TopWinners } from "@/app/components/TopWinners";
-import { UserInventory } from "@/app/components/UserInventory";
+// import { UserInventory } from "@/app/components/UserInventory";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -27,7 +26,7 @@ export default function HomePage() {
           <FeaturedSpinner />
         </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="gap-8 mb-12">
           <section>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-cyan-400">
@@ -39,21 +38,9 @@ export default function HomePage() {
             </div>
             <LiveDrops />
           </section>
-
-          <section>
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-pink-400">
-                Top Winners
-              </h2>
-              <span className="text-sm text-gray-400">Last 24 hours</span>
-            </div>
-            <TopWinners />
-          </section>
         </div>
-
-        <UserInventory />
+        {/* <UserInventory /> */}
       </main>
-
       <Footer />
     </div>
   );
