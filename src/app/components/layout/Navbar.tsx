@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { Menu, X, Bell, Gift, Wallet } from "lucide-react";
+import { Menu, X, Bell, Gift, WalletIcon } from "lucide-react";
 
 import { usePathname } from "next/navigation";
 import { Button } from "../../../components/ui/button";
@@ -16,7 +16,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useSession } from "@clerk/nextjs";
+import axios from "axios";
+import { Wallet } from "@prisma/client";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +30,21 @@ export function Navbar() {
     // { name: "Upgrade", href: "/upgrade" },
     { name: "Inventory", href: "/inventory" },
   ];
+
+  const { session } = useSession();
+  const [wallet, setWallet] = useState<Wallet | null>(null);
+
+  useEffect(() => {
+    if (session?.user.id) {
+      const getCases = async () => {
+        const res = await axios.get("/api/wallet?userId=" + session?.user.id);
+
+        setWallet(res.data);
+      };
+
+      getCases();
+    }
+  }, [session]);
 
   return (
     <header className="py-6 px-4 relative z-20">
@@ -111,14 +128,16 @@ export function Navbar() {
             </DropdownMenu>
 
             <div className="bg-gray-800/80 backdrop-blur-sm rounded-full px-4 py-2 flex items-center">
-              <span className="text-yellow-400 font-medium">1,250</span>
-              <span className="ml-2">coins</span>
+              <span className="text-yellow-400 font-medium">
+                {wallet?.balance}
+              </span>
+              <span className="ml-2">$</span>
               <Button
                 variant="ghost"
                 size="icon"
                 className="ml-1 text-gray-400 hover:text-white"
               >
-                <Wallet className="h-4 w-4" />
+                <WalletIcon className="h-4 w-4" />
               </Button>
             </div>
             <UserButton />

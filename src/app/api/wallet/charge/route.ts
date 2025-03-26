@@ -3,28 +3,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export const GET = async (req: NextRequest) => {
-  const url = new URL(req.url);
-  const userId = url.searchParams.get("userId");
-  if (userId) {
-    return NextResponse.json({ message: "userId is not present!" });
-  }
-  const userWallet = prisma.wallet.findFirst({
-    where: {
-      userId: userId as string,
-    },
-  });
-  if (userWallet) return NextResponse.json(userWallet);
-
-  const newWallet = await prisma.wallet.create({
-    data: {
-      userId: userId as string,
-      balance: 1_000,
-    },
-  });
-  return NextResponse.json(newWallet);
-};
-
 export const POST = async (req: NextRequest) => {
   try {
     const { userId, amount } = await req.json();
