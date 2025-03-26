@@ -13,26 +13,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model skins {
-  id     String @id @default(nanoid())
-  name   String
-  status String
-  img    String
+model Skins {
+  id          String      @id @default(nanoid())
+  name        String
+  status      String
+  img         String
+  price       Float       @default(0)
+  cases       CaseSkins[]
+  inventories Inventory[]
 }
 
 model Cases {
-  id   String @id @default(nanoid())
-  name String
-  img  String
+  id    String      @id @default(nanoid())
+  name  String
+  img   String
+  price Float       @default(0)
+  skins CaseSkins[]
 }
 
-model User {
-  id String @id
-
+model CaseSkins {
+  id     String @id @default(nanoid())
+  caseId String
+  case   Cases  @relation(fields: [caseId], references: [id])
+  skinId String
+  skin   Skins  @relation(fields: [skinId], references: [id])
 }
 
 model Inventory {
-  id String @id @default(nanoid())
+  id     String @id @default(nanoid())
+  userId String
+  skinId String
+  skin   Skins  @relation(fields: [skinId], references: [id])
+}
 
-  
+model Wallet {
+  id      String @id @default(nanoid())
+  userId  String
+  balance Float  @default(0)
 }
