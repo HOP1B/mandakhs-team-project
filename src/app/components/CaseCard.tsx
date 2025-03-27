@@ -7,13 +7,13 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-type CaseGridType = {
+type CaseCardType = {
   id: string;
   name: string;
   img: string;
 };
 
-export const CaseGrid = ({ id, name, img }: CaseGridType) => {
+export const CaseCard = ({ id, name, img }: CaseCardType) => {
   const [hoveredCase] = useState();
   console.log(img);
 
@@ -58,14 +58,6 @@ export const CaseGrid = ({ id, name, img }: CaseGridType) => {
           <h3 className="flex justify-center items-center font-bold text-lg">
             {name}
           </h3>
-          <div className="flex justify-between w-full items-center mt-2">
-            {/* <span className="text-yellow-400 font-medium">
-                  {caseItem.price} $
-                </span>
-                <span className="text-sm text-gray-400">
-                  {caseItem.items} items
-                </span> */}
-          </div>
           <Button
             className={`w-full mt-4 bg-gradient-to-r hover:opacity-90 transition-opacity border-[#ffffff] rounded-sm`}
             asChild

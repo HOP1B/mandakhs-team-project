@@ -1,6 +1,7 @@
 "use client";
 
-import { CaseGrid } from "@/app/components/CaseGrid";
+import { CaseCard } from "@/app/components/CaseCard";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,9 +24,9 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-32">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-cols-6 gap-6 px-32">
       {cases.map((a) => (
-        <CaseGrid id={a.id} name={a.name} img={a.img} key={a.id} />
+        <CaseCard id={a.id} name={a.name} img={a.img} key={a.id} />
       ))}
     </div>
   );

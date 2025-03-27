@@ -11,16 +11,16 @@ export const GET = async (
   const { caseId } = await params;
   const cases = await prisma.cases.findUnique({
     where: {
-        id: caseId
+      id: caseId,
     },
-    include:{
-        skins:{
-            include:{
-                skin: true
-            }
-        }
-    }
+    include: {
+      skins: {
+        include: {
+          skin: true,
+        },
+      },
+    },
   });
-  
-    return NextResponse.json(cases);
-  };
+
+  return NextResponse.json(cases);
+};

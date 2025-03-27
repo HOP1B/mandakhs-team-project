@@ -5,82 +5,68 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { nanoid } from "nanoid";
+import { imageOptimizer } from "next/dist/server/image-optimizer";
 
-const initialDrops = [
+// const initialDrops = [
+//   {
+//     id: nanoid(),
+//     username: "SniperKing",
+//     item: "AWP | Dragon Lore",
+//     image: "/placeholder.svg?height=60&width=60",
+//     rarity: "legendary",
+//     color: "from-yellow-500 to-amber-600",
+//     time: "Just now",
+//     caseImage: "/placeholder.svg?height=40&width=40",
+//     caseName: "Neon Dreams",
+//   },
+// ];
+
+const userData = [
+  {
+    id: nanoid(),
+    username: "SniperKing",
+    item: "AWP | Dragon Lore",
+    caseImage: "/placeholder.svg?height=40&width=40",
+    caseName: "Neon Dreams",
+    time: "Just now",
+  },
   {
     id: nanoid(),
     username: "SniperKing",
     item: "AWP | Dragon Lore",
     image: "/placeholder.svg?height=60&width=60",
-    rarity: "legendary",
-    color: "from-yellow-500 to-amber-600",
+    caseImage: "/placeholder.svg?height=40&width=40",
+    caseName: "Neon Dreams",
     time: "Just now",
+  },
+  {
+    id: nanoid(),
+    username: "SniperKing",
+    item: "AWP | Dragon Lore",
+    image: "/placeholder.svg?height=60&width=60",
     caseImage: "/placeholder.svg?height=40&width=40",
     caseName: "Neon Dreams",
+    time: "Just now",
   },
   {
     id: nanoid(),
-    username: "HeadshotPro",
-    item: "AK-47 | Fire Serpent",
+    username: "SniperKing",
+    item: "AWP | Dragon Lore",
     image: "/placeholder.svg?height=60&width=60",
-    rarity: "epic",
-    color: "from-red-500 to-orange-600",
-    time: "2 minutes ago",
-    caseImage: "/placeholder.svg?height=40&width=40",
-    caseName: "Crimson Glory",
-  },
-  {
-    id: nanoid(),
-    username: "FragMaster",
-    item: "M4A4 | Howl",
-    image: "/placeholder.svg?height=60&width=60",
-    rarity: "legendary",
-    color: "from-red-500 to-orange-600",
-    time: "5 minutes ago",
-    caseImage: "/placeholder.svg?height=40&width=40",
-    caseName: "Golden Touch",
-  },
-  {
-    id: nanoid(),
-    username: "QuickScope",
-    item: "Butterfly Knife | Fade",
-    image: "/placeholder.svg?height=60&width=60",
-    rarity: "legendary",
-    color: "from-purple-500 to-pink-600",
-    time: "7 minutes ago",
     caseImage: "/placeholder.svg?height=40&width=40",
     caseName: "Neon Dreams",
+    time: "Just now",
   },
   {
     id: nanoid(),
-    username: "NinjaDefuser",
-    item: "Glock-18 | Fade",
+    username: "SniperKing",
+    item: "AWP | Dragon Lore",
     image: "/placeholder.svg?height=60&width=60",
-    rarity: "epic",
-    color: "from-purple-500 to-pink-600",
-    time: "10 minutes ago",
     caseImage: "/placeholder.svg?height=40&width=40",
-    caseName: "Azure Aura",
+    caseName: "Neon Dreams",
+    time: "Just now",
   },
 ];
-
-// const userData = [
-//   {
-//     id: nanoid(),
-//     username: "SniperKing",
-//     image: "/placeholder.svg?height=60&width=60",
-//   },
-//   {
-//     id: nanoid(),
-//     username: "SniperKing",
-//     image: "/placeholder.svg?height=60&width=60",
-//   },
-//   {
-//     id: nanoid(),
-//     username: "SniperKing",
-//     image: "/placeholder.svg?height=60&width=60",
-//   },
-// ];
 
 
 type LiveDropsType = {
@@ -94,12 +80,12 @@ type LiveDropsType = {
 };
 
 export const LiveDrops = () => {
-  const [drops, setDrops] = useState<LiveDropsType[]>(initialDrops);
+  const [drops, setDrops] = useState<LiveDropsType[]>(userData);
   const [newDrop, setNewDrop] = useState<LiveDropsType | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomDrop = initialDrops[Math.floor(Math.random() * initialDrops.length)];
+      const randomDrop = userData[Math.floor(Math.random() * userData.length)];
       const updatedDrop = {
         ...randomDrop,
         id: nanoid(),
@@ -166,7 +152,7 @@ export const LiveDrops = () => {
                     />
                     <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center">
                       <Image
-                        src={newDrop.caseImage || "/placeholder.svg"}
+                        src={newDrop.caseImage}
                         alt={newDrop.caseName}
                         width={16}
                         height={16}
@@ -202,7 +188,7 @@ export const LiveDrops = () => {
             <div className="flex-shrink-0 mr-3">
               <div className="relative">
                 <Image
-                  src={"https://placehold.co/40x40"}
+                  src={"/dragonLore.png"}
                   alt={drop.item}
                   width={40}
                   height={40}
@@ -210,10 +196,10 @@ export const LiveDrops = () => {
                 />
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-gray-800 flex items-center justify-center">
                   <Image
-                    src={"https://placehold.co/16x16"}
+                    src={"/caseGamma.png"}
                     alt={drop.caseName}
-                    width={16}
-                    height={16}
+                    width={20}
+                    height={20}
                   />
                 </div>
               </div>

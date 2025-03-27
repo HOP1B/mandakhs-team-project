@@ -42,6 +42,7 @@ const spinnerItems = [
     color: "from-blue-500 to-indigo-600",
     value: 980,
   },
+
   {
     id: nanoid(),
     name: "Butterfly Knife | Fade",
@@ -345,7 +346,7 @@ export const FeaturedSpinner = () => {
                     className={`w-16 h-16 rounded-full bg-gradient-to-br ${spinner.color} opacity-20 flex items-center justify-center mb-2`}
                   >
                     <Image
-                      src={spinner.image || "/placeholder.svg"}
+                      src={spinner.image}
                       alt={spinner.name}
                       width={50}
                       height={50}

@@ -1,7 +1,6 @@
 import { FeaturedSpinner } from "@/app/components/FeaturedSpinner";
 import { Footer } from "@/app/components/layout/Footer";
 import { LiveDrops } from "@/app/components/LiveDrops";
-// import { UserInventory } from "@/app/components/UserInventory";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -16,12 +15,6 @@ export default function HomePage() {
             <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
               Featured Spinner
             </h2>
-            <Link
-              href="/spinner"
-              className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-            >
-              Try your luck
-            </Link>
           </div>
           <FeaturedSpinner />
         </section>
@@ -39,7 +32,6 @@ export default function HomePage() {
             <LiveDrops />
           </section>
         </div>
-        {/* <UserInventory /> */}
       </main>
       <Footer />
     </div>
