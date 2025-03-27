@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Search, Filter, Trash2, DollarSign } from "lucide-react";
+import { ArrowLeft, Search, Filter, Trash2, DollarSign,} from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -18,7 +18,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+  
+
 const inventoryItems = [
+ 
   {
     id: 1,
     name: "AWP | Dragon Lore",
@@ -263,6 +266,7 @@ export default function InventoryPage() {
                               variant="outline"
                               className="border-red-500 text-red-500 hover:bg-red-500/20"
                             >
+                              
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </motion.div>

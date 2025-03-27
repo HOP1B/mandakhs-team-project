@@ -40,6 +40,8 @@ export const POST = async (req: NextRequest) => {
         },
       },
     });
+    
+    
 
     return NextResponse.json(wallet, { status: 200 });
   } catch (error) {

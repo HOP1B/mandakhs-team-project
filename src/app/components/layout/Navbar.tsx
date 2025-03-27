@@ -15,8 +15,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Badge } from "@/components/ui/badge";
-import { UserButton, useSession } from "@clerk/nextjs";
+import { Badge } from "@/components/ui/badge";  
+import { UserButton, useSession } from "@clerk/nextjs";      
 import axios from "axios";
 import { Wallet } from "@prisma/client";
 
@@ -27,7 +27,6 @@ export function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Cases", href: "/cases" },
-    // { name: "Upgrade", href: "/upgrade" },
     { name: "Inventory", href: "/inventory" },
   ];
 
@@ -39,7 +38,7 @@ export function Navbar() {
       const getCases = async () => {
         const res = await axios.get("/api/wallet?userId=" + session?.user.id);
 
-        setWallet(res.data);
+        setWallet(res.data); 
       };
 
       getCases();
